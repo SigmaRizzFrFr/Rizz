@@ -41,6 +41,39 @@ local ExampleButton = Groupbox1:CreateButton("Example Button", function()
     end
 end)
 
+local ExampleButton = Groupbox1:CreateButton("Zoom in and out [L-ALT]", function()
+
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local Camera = workspace.CurrentCamera
+
+local defaultFOV = 70 -- Default field of view
+local zoomedFOV = 40 -- Zoomed-in field of view
+local tweenTime = 0.3 -- Time it takes to transition (applies to both zoom in and out)
+
+local isZoomed = false -- Tracks whether we're zoomed in
+
+-- Function to smoothly change the FOV
+local function tweenFOV(targetFOV)
+    local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+    local goal = { FieldOfView = targetFOV }
+    local tween = TweenService:Create(Camera, tweenInfo, goal)
+    tween:Play()
+end
+
+-- Toggle zoom when Left Alt is pressed
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == Enum.KeyCode.LeftAlt then
+        isZoomed = not isZoomed
+        if isZoomed then
+            tweenFOV(zoomedFOV) -- Smooth zoom in
+        else
+            tweenFOV(defaultFOV) -- Smooth zoom out
+        end
+    end
+end)
+
 
 
 
