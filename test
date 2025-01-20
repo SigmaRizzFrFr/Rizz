@@ -1021,7 +1021,7 @@ function Library:CreateWindow(title, color)
                 gradient.Position = UDim2.new(0, 10, 0, 10)
                 gradient.Size = UDim2.new(0, 154, 0, 104)
                 gradient.ZIndex = 10
-                gradient.Image = "rbxassetid://4155801252"
+                gradient.Image = "rbxassetid://13333189503"
 
                 colorselection.Name = "colorselection"
                 colorselection.Parent = gradient
@@ -1031,7 +1031,7 @@ function Library:CreateWindow(title, color)
                 colorselection.AnchorPoint = Vector2.new(0.5, 0.5)
                 colorselection.Position = UDim2.new(def and select(3, Color3.toHSV(def)))
                 colorselection.Size = UDim2.new(0, 18, 0, 18)
-                colorselection.Image = "rbxassetid://4953646208"
+                colorselection.Image = "rbxassetid://13333189503"
                 colorselection.ScaleType = Enum.ScaleType.Fit
                 
                 colorslider.Name = "colorslider"
