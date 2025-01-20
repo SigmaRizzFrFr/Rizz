@@ -1,0 +1,46 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
+
+-- Window
+local Window, MainGUI = Library:CreateWindow(":3c")
+
+-- Tabs
+local Tab1 = Window:CreateTab("Tab 1")
+--
+local Groupbox1 = Tab1:CreateGroupbox("Working ones 1", "Left")
+--
+local Groupbox2 = Tab1:CreateGroupbox("Testing 2", "Right")
+
+
+
+local ExampleButton = Groupbox1:CreateButton("Example Button", function()
+    local Lighting = game:GetService("Lighting")
+
+    -- Store the original in-game time and lighting values
+    local originalTime = Lighting.TimeOfDay
+    local originalBrightness = Lighting.Brightness
+    local originalOutdoorAmbient = Lighting.OutdoorAmbient
+    local originalAmbient = Lighting.Ambient
+
+    -- Check if the time is already set to "12:00:00" (daytime)
+    if Lighting.TimeOfDay == "12:00:00" then
+        -- Restore the original settings if the time is already set to day
+        Lighting.TimeOfDay = originalTime
+        Lighting.Brightness = originalBrightness
+        Lighting.OutdoorAmbient = originalOutdoorAmbient
+        Lighting.Ambient = originalAmbient
+
+        print("Time restored to original and brightness reset.")
+    else
+        -- Apply the changes to set it to day and brighten the environment
+        Lighting.TimeOfDay = "12:00:00"  -- Set time to day
+        Lighting.Brightness = 3  -- Increase brightness
+        Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)  -- Brighter outdoor ambient light
+        Lighting.Ambient = Color3.fromRGB(255, 255, 255)  -- Brighter ambient light
+
+        print("Time set to day and brightness adjusted.")
+    end
+end)
+
+
+
+
