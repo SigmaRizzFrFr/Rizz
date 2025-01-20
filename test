@@ -237,7 +237,7 @@ function Library:CreateWindow(title, color)
         Pattern.Position = UDim2.new(0.499520153, 0, 0.499957234, 0)
         Pattern.Size = UDim2.new(0, 521, 0, 471)
         Pattern.ZIndex = 9
-        Pattern.Image = "rbxassetid://2151741365"
+        Pattern.Image = "rbxassetid://13333189503"
         Pattern.ImageTransparency = 0.600
         Pattern.ScaleType = Enum.ScaleType.Tile
         Pattern.SliceCenter = Rect.new(0, 256, 0, 256)
