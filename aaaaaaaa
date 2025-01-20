@@ -1,0 +1,73 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
+
+-- Window
+local Window, MainGUI = Library:CreateWindow(":3c")
+
+-- Tabs
+local Tab1 = Window:CreateTab("Tab 1")
+local Groupbox1 = Tab1:CreateGroupbox("Working ones 1", "Left")
+local Groupbox2 = Tab1:CreateGroupbox("Testing 2", "Right")
+
+-- Example Button 1
+local DayNightButton = Groupbox1:CreateButton("Set Day", function()
+    local Lighting = game:GetService("Lighting")
+
+    -- Store the original in-game time and lighting values
+    local originalTime = Lighting.TimeOfDay
+    local originalBrightness = Lighting.Brightness
+    local originalOutdoorAmbient = Lighting.OutdoorAmbient
+    local originalAmbient = Lighting.Ambient
+
+    -- Check if the time is already set to "12:00:00" (daytime)
+    if Lighting.TimeOfDay == "12:00:00" then
+        -- Restore the original settings if the time is already set to day
+        Lighting.TimeOfDay = originalTime
+        Lighting.Brightness = originalBrightness
+        Lighting.OutdoorAmbient = originalOutdoorAmbient
+        Lighting.Ambient = originalAmbient
+
+        print("Time restored to original and brightness reset.")
+    else
+        -- Apply the changes to set it to day and brighten the environment
+        Lighting.TimeOfDay = "12:00:00"  -- Set time to day
+        Lighting.Brightness = 3  -- Increase brightness
+        Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)  -- Brighter outdoor ambient light
+        Lighting.Ambient = Color3.fromRGB(255, 255, 255)  -- Brighter ambient light
+
+        print("Time set to day and brightness adjusted.")
+    end
+end)
+
+-- Example Button 2
+local ZoomButton = Groupbox1:CreateButton("Zoom in and out L-ALT", function()
+    local UserInputService = game:GetService("UserInputService")
+    local TweenService = game:GetService("TweenService")
+    local Camera = workspace.CurrentCamera
+
+    local defaultFOV = 100 -- Default field of view
+    local zoomedFOV = 40 -- Zoomed-in field of view
+    local tweenTime = 0.3 -- Time it takes to transition (applies to both zoom in and out)
+
+    local isZoomed = false -- Tracks whether we're zoomed in
+
+    -- Function to smoothly change the FOV
+    local function tweenFOV(targetFOV)
+        local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+        local goal = { FieldOfView = targetFOV }
+        local tween = TweenService:Create(Camera, tweenInfo, goal)
+        tween:Play()
+    end
+
+    -- Toggle zoom when Left Alt is pressed
+    UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.KeyCode == Enum.KeyCode.LeftAlt then
+            isZoomed = not isZoomed
+            if isZoomed then
+                tweenFOV(zoomedFOV) -- Smooth zoom in
+            else
+                tweenFOV(defaultFOV) -- Smooth zoom out
+            end
+        end
+    end)
+end)
