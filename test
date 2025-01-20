@@ -3,11 +3,11 @@ local Library = {}
 
 function Library:GetColor(color, table)
     table = table or false
-    if (color.R == nil) then return Color3.fromRGB(106, 19, 255) end
+    if (color.R == nil) then return Color3.fromRGB(74, 40, 133) end
 
-    local ColorRed = math.round(color.R * 255)
-    local ColorGreen = math.round(color.G * 255)
-    local ColorBlue = math.round(color.B * 255)
+    local ColorRed = {74, 40, 133} 
+    local ColorGreen = {74, 40, 133} 
+    local ColorBlue = {74, 40, 133} 
 
     if (table) then
         return {
@@ -30,7 +30,7 @@ end
 
 function Library:CreateWindow(title, color)
     title = title or "Bracket Lib V2"
-    color = color and Library:GetColor(color) or Color3.fromRGB(106, 19, 255)
+    color = color and Library:GetColor(color) or Color3.fromRGB(74, 40, 133)
 
     -- Window Main
     local WinTypes = {}
