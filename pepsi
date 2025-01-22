@@ -7679,7 +7679,12 @@ function library:CreateWindow(options, ...)
 		end
 		return tabFunctions
 	end
+	windowFunctions.AddTab = windowFunctions.CreateTab
+	windowFunctions.NewTab = windowFunctions.CreateTab
+	windowFunctions.Tab = windowFunctions.CreateTab
+	windowFunctions.T = windowFunctions.CreateTab
 
+	return windowFunctions
 end
 library.NewWindow = library.CreateWindow
 library.AddWindow = library.CreateWindow
